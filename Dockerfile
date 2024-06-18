@@ -1,15 +1,17 @@
-FROM node:22.2-alpine
+# Use Alpine Linux 3.20 as the base image
+FROM alpine:3.20
 
-# Set the working directory in the container
+# Update package repositories and upgrade busybox
+RUN apk update && \
+    apk upgrade busybox=1.36.1-r29 busybox-extras=1.36.1-r29 busybox-ssl_client=1.36.1-r29
+
+# Set the working directory inside the container
 WORKDIR /app
-
-# Upgrade busybox to the fixed version
-RUN apk add --no-cache busybox=1.36.1-r29 busybox-extras=1.36.1-r29 busybox-ssl_client=1.36.1-r29
 
 # Copy package.json and package-lock.json (if available)
 COPY package.json package-lock.json* ./
 
-# Install dependencies
+# Install Node.js dependencies
 RUN npm install
 
 # Copy the rest of the application code

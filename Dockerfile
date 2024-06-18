@@ -1,10 +1,10 @@
 FROM node:22.2-alpine
 
-# Upgrade busybox to the fixed version
-RUN apk add --no-cache busybox=1.36.1-r29 busybox-extras=1.36.1-r29
-
 # Set the working directory in the container
 WORKDIR /app
+
+# Upgrade busybox to the fixed version
+RUN apk add --no-cache busybox=1.36.1-r29 busybox-extras=1.36.1-r29 busybox-ssl_client=1.36.1-r29
 
 # Copy package.json and package-lock.json (if available)
 COPY package.json package-lock.json* ./

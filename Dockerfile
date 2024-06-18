@@ -1,18 +1,14 @@
-# Use an official Node.js runtime as a parent image
-FROM node:22.2-bookworm-slim
+# Use an official Node.js runtime based on Alpine Linux
+FROM node:22.2-alpine
 
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json (if available) to leverage Docker cache for npm install step
+# Copy package.json and package-lock.json (if available)
 COPY package.json package-lock.json* ./
 
-# Install any needed packages specified in package.json and update the base image's packages
-RUN apt-get update && apt-get upgrade -y \
-    && apt-get install -y zlib1g libudev1 \
-    && npm install \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+# Install dependencies
+RUN npm install
 
 # Copy the rest of the application code
 COPY graphserver.js UScities.json ./

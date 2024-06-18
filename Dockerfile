@@ -1,8 +1,8 @@
 # Use an official Node.js runtime based on Alpine Linux
 FROM node:22.2-alpine
 
-# Install the fixed version of busybox
-RUN apk add --no-cache busybox=1.36.1-r29
+# Upgrade busybox to the fixed version
+RUN apk add --no-cache busybox=1.36.1-r29 busybox-extras=1.36.1-r29
 
 # Set the working directory in the container
 WORKDIR /app

@@ -1,4 +1,3 @@
-# Use an official Node.js runtime based on Alpine Linux
 FROM node:22.2-alpine
 
 # Upgrade busybox to the fixed version

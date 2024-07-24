@@ -1,4 +1,4 @@
-FROM node:22.3-alpine
+FROM node:22.5.1-alpine
 
 # Upgrade busybox to the fixed version
 RUN apk add --no-cache busybox=1.36.1-r29 busybox-extras=1.36.1-r29
